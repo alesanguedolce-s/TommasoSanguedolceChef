@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommaso Sanguedolce — Autore Gastronomico</title>
+    <meta name="description"
+        content="Tommaso Sanguedolce — Chef, autore e consulente creativo. Tradizione Nomade. Cucina d'Istinto. Dalla Puglia alla Sardegna, un viaggio di sapori e visione contemporanea.">
+    <meta name="keywords"
+        content="chef, cucina d'autore, consulente gastronomico, eventi privati, brand experience, alta cucina, Puglia, Sardegna">
+
+    <!-- Fonts: Cormorant Garamond (titoli) + Inter (corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS.js — Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Lenis — Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- Foglio stile principale -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Alpine.js gestisce la logica del menu mobile -->
+
+<body x-data="{ menuOpen: false }" class="antialiased">
+
+    <!-- NOISE OVERLAY — Tocco analogico -->
+    <div class="noise-overlay"></div>
+
+    <!-- ═══════════════════════════════════════════════════
+         NAVIGAZIONE ETEREA
+         Menu "ghost" che appare solo con blur di sfondo
+    ═══════════════════════════════════════════════════ -->
+    <header id="navbar" class="navbar" role="banner">
+        <nav class="nav-container" aria-label="Navigazione principale">
+            <!-- Logo -->
+            <a href="#origine" class="nav-logo" aria-label="Torna all'inizio">
+                <img src="images/logo-icon.png" alt="Tommaso Sanguedolce" class="nav-logo-img">
+            </a>
+
+            <!-- Links desktop -->
+            <ul class="nav-links" role="list">
+                <li><a href="#origine" class="nav-link">Origine</a></li>
+                <li><a href="#visione" class="nav-link">Visione</a></li>
+                <li><a href="#servizi" class="nav-link">Servizi</a></li>
+                <li><a href="#materia" class="nav-link">Materia</a></li>
+                <li><a href="#dialogo" class="nav-link">Dialogo</a></li>
+            </ul>
+
+            <!-- Hamburger mobile -->
+            <button class="nav-hamburger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen"
+                aria-label="Apri menu di navigazione">
+                <span class="hamburger-line" :class="menuOpen && 'open-top'"></span>
+                <span class="hamburger-line" :class="menuOpen && 'open-mid'"></span>
+                <span class="hamburger-line" :class="menuOpen && 'open-bot'"></span>
+            </button>
+        </nav>
+
+        <!-- Menu mobile overlay -->
+        <div class="mobile-menu" :class="menuOpen && 'mobile-menu--open'" x-cloak>
+            <ul class="mobile-menu-links" role="list">
+                <li><a href="#origine" class="mobile-link" @click="menuOpen = false">Origine</a></li>
+                <li><a href="#visione" class="mobile-link" @click="menuOpen = false">Visione</a></li>
+                <li><a href="#servizi" class="mobile-link" @click="menuOpen = false">Servizi</a></li>
+                <li><a href="#materia" class="mobile-link" @click="menuOpen = false">Materia</a></li>
+                <li><a href="#dialogo" class="mobile-link" @click="menuOpen = false">Dialogo</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- ═══════════════════════════════════════════════════
+             HERO — L'ORIGINE
+             Nome con letter-spacing ampio + parallax
+        ═══════════════════════════════════════════════════ -->
+        <section id="origine" class="hero" aria-label="Sezione Hero">
+            <div class="hero-parallax" role="img" aria-label="Chef Tommaso Sanguedolce al lavoro"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="hero-label" data-aos="fade-up" data-aos-delay="200">Chef · Docente · Consulente Creativo</p>
+                <h1 class="hero-name" data-aos="fade-up" data-aos-delay="400">Tommaso<br><em>Sanguedolce</em></h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="600">
+                    <em>Dalla Puglia alla Sardegna.</em><br>Attraverso le grandi cucine d'Europa.
+                </p>
+                <a href="#visione" class="hero-scroll-cue" data-aos="fade-up" data-aos-delay="900"
+                    aria-label="Scopri di più">
+                    <span class="scroll-line"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             VISIONE
+             Citazione poetica + Biografia sintetica
+        ═══════════════════════════════════════════════════ -->
+        <section id="visione" class="section-visione" aria-label="La mia visione">
+            <div class="visione-container" data-aos="fade-up">
+                <p class="section-eyebrow">La Filosofia</p>
+
+                <!-- Citazione poetica come apertura -->
+                <blockquote class="visione-quote">
+                    "È il colore delle foglie che cadono sulla terra bagnata.<br>
+                    È la brezza marina che ti accarezza il viso dopo la tempesta.<br>
+                    È il prezioso ciclo delle stagioni a cui mi piace tendere la mano:<br>
+                    è questa la cucina che amo."
+                </blockquote>
+
+                <div class="visione-text">
+                    <p class="drop-cap">
+                        Nato in Puglia tra gli ulivi di Andria, cresciuto con i nonni contadini e un padre pasticcere.
+                        La mia passione nasce dalla terra e si affina nelle "università dei cuochi": dall'<strong>ALMA
+                            di Gualtiero Marchesi</strong>
+                        alle 3 stelle Michelin di <strong>Georges Blanc</strong>, fino al <strong>Ritz di
+                            Londra</strong>.
+                    </p>
+                    <p>
+                        Dopo aver diretto il <em>Puglia Culinary Center</em> al Castello di Ugento e portato la cucina
+                        italiana a New York e Istanbul,
+                        oggi la mia ricerca prosegue in Sardegna.
+                        La mia cucina è un intreccio di radici profonde e visione contemporanea: parto dalla memoria per
+                        creare qualcosa di inedito.
+                        Non cucino solo ingredienti, ma storie, stagioni e identità.
+                    </p>
+
+                    <button class="visione-cta" aria-controls="bio-drawer" aria-expanded="false">
+                        Leggi la storia completa <span class="arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             I SERVIZI — THE HYBRID GRID
+             3 blocchi con immagini desaturate al 20%, full color on hover
+        ═══════════════════════════════════════════════════ -->
+        <section id="servizi" class="section-servizi" aria-label="I miei servizi">
+            <div class="servizi-header" data-aos="fade-up">
+                <p class="section-eyebrow">I Servizi</p>
+                <h2 class="section-heading">Tre dimensioni<br>di un <em>unico linguaggio</em></h2>
+            </div>
+
+            <div class="servizi-grid">
+                <!-- Formazione & Consulenza -->
+                <article class="servizio-card" data-aos="fade-up" data-aos-delay="100" data-service-id="formazione">
+                    <div class="servizio-bg" style="background-image: url('foto/chef-plating-premium.jpg');" role="img"
+                        aria-label="Formazione e Consulenza"></div>
+                    <div class="servizio-content">
+                        <h3 class="servizio-title">Formazione <em>&</em> Consulenza</h3>
+                        <p class="servizio-desc">Dalla direzione didattica (Puglia Culinary Center) alla consulenza per
+                            ristoranti fine-dining. <br><span class="mt-2 inline-block opacity-60"
+                                style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; margin-top:0.8rem; display:block;">Scopri
+                                di più →</span></p>
+                    </div>
+                </article>
+
+                <!-- Esperienze Esclusive -->
+                <article class="servizio-card" data-aos="fade-up" data-aos-delay="250" data-service-id="esperienze">
+                    <div class="servizio-bg" style="background-image: url('foto/chef-pasta-making.jpg');" role="img"
+                        aria-label="Esperienze Esclusive"></div>
+                    <div class="servizio-content">
+                        <h3 class="servizio-title">Esperienze <em>Esclusive</em></h3>
+                        <p class="servizio-desc">Eventi privati e cene d'autore: dove il cibo diventa cultura e
+                            linguaggio. <br><span class="mt-2 inline-block opacity-60"
+                                style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; margin-top:0.8rem; display:block;">Scopri
+                                di più →</span></p>
+                    </div>
+                </article>
+
+                <!-- Cucina d'Autore -->
+                <article class="servizio-card" data-aos="fade-up" data-aos-delay="400" data-service-id="cucina">
+                    <div class="servizio-bg" style="background-image: url('foto/chef-plating-detail.jpg');" role="img"
+                        aria-label="Cucina d'Autore"></div>
+                    <div class="servizio-content">
+                        <h3 class="servizio-title">Cucina <em>d'Autore</em></h3>
+                        <p class="servizio-desc">Percorsi sartoriali che uniscono la tradizione pugliese alla materia
+                            sarda. <br><span class="mt-2 inline-block opacity-60"
+                                style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; margin-top:0.8rem; display:block;">Scopri
+                                di più →</span></p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             MATERIA — ACCORDION GALLERY
+             Compatta, interattiva, elegante.
+        ═══════════════════════════════════════════════════ -->
+        <section id="materia" class="section-materia" aria-label="Galleria fotografica">
+            <div class="materia-header" data-aos="fade-up">
+                <p class="section-eyebrow">La Materia</p>
+                <h2 class="section-heading">Il gesto, <em>la terra</em>,<br>il piatto</h2>
+            </div>
+
+            <div class="materia-accordion" data-aos="fade-up" data-aos-delay="200">
+                <!-- Foto 1 -->
+                <div class="accordion-panel"
+                    style="background-image: url('Gallery/WhatsApp Image 2025-12-06 at 14.49.07.jpeg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/WhatsApp Image 2025-12-06 at 14.49.07.jpeg">
+                </div>
+                <!-- Foto 2 -->
+                <div class="accordion-panel"
+                    style="background-image: url('Gallery/WhatsApp Image 2025-12-06 at 14.49.25.jpeg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/WhatsApp Image 2025-12-06 at 14.49.25.jpeg">
+                </div>
+                <!-- Foto 3 -->
+                <div class="accordion-panel"
+                    style="background-image: url('Gallery/WhatsApp Image 2025-12-10 at 10.56.50.jpeg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/WhatsApp Image 2025-12-10 at 10.56.50.jpeg">
+                </div>
+                <!-- Foto 4 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/chef-author-concept.jpg');"
+                    role="button" aria-label="Galleria foto Materia" data-src="Gallery/chef-author-concept.jpg"></div>
+                <!-- Foto 5 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/chef-cooking.jpg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/chef-cooking.jpg"></div>
+                <!-- Foto 6 (Attivo) -->
+                <div class="accordion-panel active" style="background-image: url('Gallery/chef-cutting-pasta.jpg');"
+                    role="button" aria-label="Galleria foto Materia" data-src="Gallery/chef-cutting-pasta.jpg"></div>
+                <!-- Foto 7 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/chef-plating-highres.jpg');"
+                    role="button" aria-label="Galleria foto Materia" data-src="Gallery/chef-plating-highres.jpg"></div>
+                <!-- Foto 8 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/chef-portrait.jpg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/chef-portrait.jpg"></div>
+                <!-- Foto 9 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/hands-kneading.jpg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/hands-kneading.jpg"></div>
+                <!-- Foto 10 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/hero-piatto.jpeg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/hero-piatto.jpeg"></div>
+                <!-- Foto 11 -->
+                <div class="accordion-panel" style="background-image: url('Gallery/scent-of-dough.jpg');" role="button"
+                    aria-label="Galleria foto Materia" data-src="Gallery/scent-of-dough.jpg"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════════════
+             CONTACT — IL DIALOGO
+             Info rimosse (spostate nel footer), resta solo la CTA
+        ═══════════════════════════════════════════════════ -->
+        <section id="dialogo" class="section-dialogo" aria-label="Contatti">
+            <div class="dialogo-container" data-aos="fade-up">
+                <p class="section-eyebrow">Il Dialogo</p>
+                <h2 class="section-heading">Ogni grande piatto<br>nasce da una <em>conversazione</em></h2>
+                <p class="dialogo-text">
+                    Che si tratti di un evento esclusivo, di un progetto editoriale, o semplicemente
+                    di un'idea che ha bisogno di prendere forma — il primo passo è sempre una parola.
+                </p>
+                <div class="dialogo-cta">
+                    <a href="mailto:chef@tommasosanguedolce.it" class="cta-invito"
+                        aria-label="Scrivi un'email allo chef">
+                        Iniziamo a parlare →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════
+         FOOTER
+         Luxury Minimalist Style
+    ═══════════════════════════════════════════════════ -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-container">
+            <!-- SX: Navigazione Verticale -->
+            <div class="footer-block block-nav">
+                <ul class="footer-nav-list">
+                    <li><a href="#origine">Origine</a></li>
+                    <li><a href="#visione">Visione</a></li>
+                    <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#materia">Materia</a></li>
+                    <li><a href="#dialogo">Contatti</a></li>
+                </ul>
+            </div>
+
+            <!-- CENTRO: Full Logo -->
+            <div class="footer-block block-brand">
+                <img src="images/full-logo.png" alt="Tommaso Sanguedolce" class="footer-logo">
+            </div>
+
+            <!-- DX: Contatti + Social -->
+            <div class="footer-block block-contact">
+                <a href="mailto:chef@tommasosanguedolce.it" class="footer-contact-line">chef@tommasosanguedolce.it</a>
+                <span class="footer-contact-line">+39 348 123 4567</span>
+                <div class="footer-social-icons">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <circle cx="17.5" cy="6.5" r="1.5"></circle>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credits Minimal -->
+        <div class="footer-credits">
+            <span>&copy; 2026 Tommaso Sanguedolce</span>
+            <span class="separator">·</span>
+            <span>P.IVA 00000000000</span>
+            <span class="separator">·</span>
+            <a href="#">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Alpine.js — Logica UI leggera -->
+    <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+    <!-- AOS.js — Animazioni allo scroll -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- BIO DRAWER — Pannello laterale approfondimento -->
+    <div id="bio-drawer" class="bio-drawer" aria-hidden="true">
+        <div class="bio-overlay" data-close-drawer></div>
+        <div class="bio-content">
+            <button class="bio-close" aria-label="Chiudi biografia" data-close-drawer></button>
+
+            <div class="bio-body" data-lenis-prevent>
+                <span class="bio-eyebrow">Il Percorso</span>
+                <h2 class="bio-title">Tommaso Sanguedolce</h2>
+
+                <div class="bio-text-block">
+                    <h3>Le Radici</h3>
+                    <p>Tommaso Sanguedolce, classe 1986, è originario di Andria, città situata nel cuore della Puglia,
+                        patria della burrata e dell'olio extravergine d'oliva tra i più buoni al mondo.</p>
+                    <p>Nel contesto famigliare, con i nonni contadini, il padre pasticcere e la madre ottima cuoca,
+                        nasce la sua passione per la terra ed il cibo.</p>
+                </div>
+
+                <div class="bio-text-block">
+                    <h3>La Formazione</h3>
+                    <p>Conseguita la maturità presso l'Istituto Alberghiero e dopo anni di esperienza e di crescita
+                        nelle cucine di varie regioni italiane, dove perfeziona abilità e competenze nell'ambito
+                        dell'hotellerie e della banchettistica, Tommaso inizia il suo percorso professionale più
+                        importante.</p>
+                    <p>Prima approdando come assistente chef in una delle più prestigiose "università dei cuochi" in
+                        Italia, la scuola <strong>ALMA</strong>, al tempo sotto il rettorato di Gualtiero Marchesi, e
+                        poi esercitando la professione di cuoco per svariati anni all'estero.</p>
+                    <p>Ha maturato esperienza e notorietà lavorando da <strong>Georges Blanc</strong> a Vonnas (3 stelle
+                        Michelin), al <strong>Ritz di Londra</strong> (2 stelle Michelin), quindi come consulente per il
+                        ristorante italiano Osteria Lucio di Dublino dello Chef stellato Ross Lewis (2 stelle con il
+                        ristorante Chapter one) e infine come Head Chef al Forte Village Resort in Sardegna.</p>
+                </div>
+
+                <div class="bio-text-block">
+                    <h3>Il Ritorno in Puglia</h3>
+                    <p>Nel 2017 ritorna nella sua amata Puglia per un progetto che lo vede come Executive Chef del
+                        ristorante fine-dining <em>Il Tempo Nuovo</em> all'interno delle maestose mura del Castello di
+                        Ugento e del ristorante tradizionale pugliese della Masseria Le Mandorle.</p>
+                    <p>Inoltre, assume il ruolo di direttore didattico del <strong>Puglia Culinary Center</strong>,
+                        scuola di cucina per amatori e professionisti situata sempre all'interno del Castello. Nel 2022
+                        ha qui coordinato il laboratorio del corso di Enogastronomia d'Impresa dell'Università LUM.</p>
+                    <p>Nell'ambito del progetto del Castello di Ugento è stato anche protagonista di vari eventi in giro
+                        per il mondo: a Milano per "Identità Golose", a New York, a Istanbul e Londra in veste di
+                        promotore della cucina italiana nel mondo e del ristorante Il Tempo Nuovo.</p>
+                </div>
+
+                <div class="bio-text-block">
+                    <h3>Il Presente</h3>
+                    <p>Attualmente risiede in Sardegna, altra terra ricca di tradizione e ottima materia. Qui Tommaso ha
+                        affondato le sue radici e propone la sua visione culinaria con le spalle cariche di esperienze
+                        vissute e con lo sguardo rivolto al futuro, sempre mantenendo una constante attenzione verso ciò
+                        che la terra offre nel qui e ora.</p>
+                    <p>A Cagliari, ha avviato come Chef il ristorante fine-dining <em>Gli Uffici</em>, situato
+                        all'interno del Palazzo Boyl, uno degli edifici storici più importanti della città.</p>
+                </div>
+
+                <div class="bio-text-block">
+                    <h3>La Filosofia</h3>
+                    <p>Chef pugliese con radici profonde e visione contemporanea. La sua cucina celebra l'amore per il
+                        territorio coniugando la curiosità di chi vuole esplorare nuove tecniche.</p>
+                    <p>Le sue radici, le sue esperienze e la sua identità sono sempre presenti nei suoi piatti, che
+                        diventano un intreccio di sapori, profumi e ricordi che accompagnano chi siede alla sua tavola
+                        in un viaggio unico.</p>
+                    <p>Per creare qualcosa di unico e originale che lo rappresenti parte sempre dalle usanze e dalle
+                        tradizioni locali, dalla stagionalità dei prodotti unite alle sue conoscenze del mondo vegetale
+                        a cui, come ingredienti fondamentali, aggiunge la sua personalità e la sua anima.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE DRAWER — Pannello laterale servizi -->
+    <div id="service-drawer" class="bio-drawer" aria-hidden="true">
+        <div class="bio-overlay" data-close-service-drawer></div>
+        <div class="bio-content">
+            <button class="bio-close" aria-label="Chiudi servizio" data-close-service-drawer></button>
+            <div class="bio-body" data-lenis-prevent>
+                <span class="bio-eyebrow" id="service-subtitle">Dettaglio Servizio</span>
+                <h2 class="bio-title" id="service-title">Titolo Servizio</h2>
+                <div class="bio-text-block">
+                    <p id="service-description">Descrizione dettagliata del servizio...</p>
+                    <p class="mt-4" style="margin-top: 2rem;">
+                        <a href="mailto:chef@tommasosanguedolce.it" class="cta-invito" style="font-size: 1.2rem;">
+                            Richiedi informazioni →
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX — Popup Immagine -->
+    <div id="lightbox" class="lightbox-modal" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Chiudi"></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Ingrandimento">
+        </div>
+    </div>
+
+    <!-- Script principale -->
+    <script src="script.js"></script>
+</body>
+
+</html>
