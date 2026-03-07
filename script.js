@@ -5,24 +5,34 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ───────── LENIS — Smooth Scroll Inerziale ─────────
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-    });
+    // ───────── LENIS — Smooth Scroll Selettivo ─────────
+    // Rilevamento Browser: Chromium-based (Opera, Chrome, Edge)
+    const isChromium = !!window.chrome || navigator.userAgent.indexOf("OPR") !== -1 || navigator.userAgent.indexOf("Opera") !== -1;
 
-    function raf(time) {
-        lenis.raf(time);
+    let lenis = null;
+
+    if (!isChromium) {
+        // SETTAGGI PER MOZILLA / ALTRI (EFFETTO DIVINO)
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            if (lenis) lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
+    } else {
+        // SU CHROMIUM (OPERA/CHROME) USIAMO LO SCROLL NATIVO OTTIMIZZATO
+        document.documentElement.style.scrollBehavior = 'smooth';
     }
-
-    requestAnimationFrame(raf);
 
 
     // ───────── AOS — Animazioni allo scroll ─────────
@@ -203,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'cucina': {
             title: 'Cucina d\'Autore',
             subtitle: 'Materia e Memoria',
-            description: "La mia cucina è un atto di rispetto verso la materia prima. Una ricerca costante che celebra le radici pugliesi attraverso lo specchio della Sardegna. Piatti autentici, istintivi, che cercano l'equilibrio tra tradizione e innovazione contemporanea."
+            description: "La mia cucina è un atto di rispetto verso la materia prima, una ricerca costante che celebra le radici pugliesi e l'anima mediterranea. Piatti autentici, istintivi, che cercano l'equilibrio tra tradizione e innovazione contemporanea."
         }
     };
 
@@ -246,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.querySelector('.lightbox-close');
-    const galleryPanels = document.querySelectorAll('.accordion-panel');
+    const galleryPanels = document.querySelectorAll('.mosaic-item');
 
     // Apri Lightbox
     if (galleryPanels.length > 0) {
@@ -285,6 +295,30 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 closeLightbox();
+            }
+        });
+    }
+
+    // ───────── BACK TO TOP BUTTON ─────────
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }, { passive: true });
+
+        backToTopBtn.addEventListener('click', () => {
+            if (typeof lenis !== 'undefined') {
+                lenis.scrollTo(0);
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
         });
     }
