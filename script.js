@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'esperienze': {
             title: 'Esperienze Esclusive',
             subtitle: 'Il Cibo come Linguaggio',
-            description: "Eventi privati e cene d'autore dove l'ospite è al centro di una narrazione. Non si tratta solo di nutrirsi, ma di vivere un'esperienza sensoriale completa: un viaggio attraverso territori, profumi e memorie sapientemente intrecciate."
+            description: "Eventi privati come catering, ricorrenze, masterclass e cene d'autore dove l'ospite è al centro di una narrazione."
         },
         'cucina': {
             title: 'Cucina d\'Autore',
