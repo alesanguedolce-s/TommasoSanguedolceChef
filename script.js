@@ -201,19 +201,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contenuti dei servizi
     const serviceData = {
         'formazione': {
-            title: 'Formazione & Consulenza',
-            subtitle: 'Direzione e Visione',
-            description: "Oltre la tecnica, porto la mia visione strategica all'interno delle brigate e dei nuovi progetti ristorativi. Dalla gestione operativa (Food Cost, Menu Engineering) alla formazione d'eccellenza, aiuto i professionisti a trovare una propria identità culinaria."
+            title: 'Consulenza gastronomica',
+            subtitle: 'Identità e Visione',
+            description: "Affianco ristoranti, hotel e nuovi progetti di ristorazione nello sviluppo dell’identità culinaria, dalla creazione dei menu al food cost, fino all’organizzazione della cucina e alla formazione della brigata."
         },
         'esperienze': {
-            title: 'Esperienze Esclusive',
-            subtitle: 'Il Cibo come Linguaggio',
-            description: "Eventi privati come catering, ricorrenze, masterclass e cene d'autore dove l'ospite è al centro di una narrazione."
+            title: 'Esperienze gastronomiche private',
+            subtitle: 'Racconto e Convivialità',
+            description: "Cene d’autore ed esperienze gastronomiche su misura per eventi privati, ville e occasioni speciali, dove la cucina diventa racconto, territorio e convivialità."
         },
         'cucina': {
-            title: 'Cucina d\'Autore',
-            subtitle: 'Materia e Memoria',
-            description: "La mia cucina è un atto di rispetto verso la materia prima, una ricerca costante che celebra le radici pugliesi e l'anima mediterranea. Piatti autentici, istintivi, che cercano l'equilibrio tra tradizione e innovazione contemporanea."
+            title: 'Formazione e Masterclass',
+            subtitle: 'Cultura e Tecnica',
+            description: "Workshop e percorsi formativi dedicati alla cucina mediterranea, alla pasta artigianale e alla cultura gastronomica italiana. Le attività possono svolgersi online o in presenza e includere format per aziende, team building e collaborazioni con brand del settore food."
         }
     };
 
