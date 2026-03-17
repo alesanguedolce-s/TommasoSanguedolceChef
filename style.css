@@ -136,20 +136,37 @@ a {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 10000;
     padding: 1.5rem var(--section-px);
-    transition: background var(--duration) var(--ease-organic),
-        padding var(--duration) var(--ease-organic),
-        backdrop-filter var(--duration) var(--ease-organic);
+    transition: padding var(--duration) var(--ease-organic);
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(248, 246, 242, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: opacity var(--duration) var(--ease-organic);
 }
 
 /* Stato scrollato — blur di sfondo */
 .navbar.scrolled {
-    background: rgba(248, 246, 242, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     padding: 1rem var(--section-px);
-    border-bottom: 1px solid var(--border);
+}
+
+.navbar.scrolled::before {
+    opacity: 1;
+}
+
+/* Quando il menu mobile è aperto, rimuovi il blur dello sfondo e rendi la barra trasparente */
+.navbar.menu-open::before {
+    opacity: 0 !important;
 }
 
 .nav-container {
@@ -183,6 +200,11 @@ a {
 /* Scrolled: torna ai colori originali del brand */
 .navbar.scrolled .nav-logo-img {
     filter: none;
+}
+
+/* Menu aperto sul mobile: forza il logo a essere bianco per visibilità sul fondo scuro */
+.navbar.menu-open .nav-logo-img {
+    filter: brightness(0) invert(1) !important;
 }
 
 /* Links con animazione underline dal centro */
@@ -253,6 +275,13 @@ a {
     background: var(--text-primary);
 }
 
+/* Quando il menu mobile è aperto (sfondo scuro), forza le linee dell'hamburger ad essere chiare per il contrasto */
+.hamburger-line.open-top,
+.hamburger-line.open-mid,
+.hamburger-line.open-bot {
+    background: var(--bg-primary) !important;
+}
+
 /* Animazione hamburger → X */
 .hamburger-line.open-top {
     transform: translateY(6.5px) rotate(45deg);
@@ -266,11 +295,11 @@ a {
     transform: translateY(-6.5px) rotate(-45deg);
 }
 
-/* Menu mobile overlay — full screen con blur */
 .mobile-menu {
     position: fixed;
     inset: 0;
-    background: rgba(26, 24, 21, 0.95);
+    /* Colore coprente solido scuro con blur */
+    background: rgba(22, 20, 18, 0.98);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     display: flex;
@@ -279,7 +308,8 @@ a {
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--duration) var(--ease-organic);
-    z-index: 999;
+    /* Innalzato z-index per coprire tutto, anche noise-overlay(9000) e back-to-top(1000) */
+    z-index: 9999;
 }
 
 .mobile-menu--open {
@@ -897,14 +927,35 @@ a {
 
 @media (max-width: 768px) {
     .materia-mosaic {
-        column-count: 2;
-        column-gap: 1rem;
+        column-count: unset;
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 var(--section-px);
+        padding-bottom: 1.5rem;
+        /* Nasconde la scrollbar per un look pulito */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-}
 
-@media (max-width: 480px) {
-    .materia-mosaic {
-        column-count: 1;
+    .materia-mosaic::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mosaic-item {
+        flex: 0 0 75vw;
+        scroll-snap-align: center;
+        margin-bottom: 0;
+        border-radius: 12px;
+        aspect-ratio: 3 / 4;
+    }
+
+    .mosaic-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -1203,25 +1254,35 @@ a {
    RESPONSIVE (Tablet — max 1024px)
    ═══════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
+
+    /* Scorrimento orizzontale stile swipe per iPad e Mobile */
     .servizi-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        /* Spazio per l'ombra o respiro visivo */
+
+        /* Nasconde la scrollbar estetica originaria del browser */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .servizi-grid::-webkit-scrollbar {
+        display: none;
     }
 
     .servizio-card {
-        height: 400px;
+        /* Larghezza fissa per far spuntare l'inizio della card successiva (circa l'80% o 85%) */
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+        height: 420px;
+        /* Altezza adeguata per l'aspetto "Portrait" editoriale */
     }
 
-    /* Mosaico su tablet: 2 colonne */
-    .materia-mosaic {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 220px;
-    }
 
-    /* Annulla le celle wide su tablet (evita celle troppo strette) */
-    .mosaic-item.mosaic-wide {
-        grid-column: span 1;
-    }
 }
 
 
@@ -1242,18 +1303,28 @@ a {
         display: flex;
     }
 
-    /* Hero: immagine specifica per mobile e layout */
+    /* Hero: foto d'azione per mobile — sfondo scuro, testo leggibile */
     .hero-parallax {
-        background-image: url('foto/tom-chef-nuova-ritaglio.JPG');
-        background-position: center top;
-        /* Assicura che il volto sia visibile */
+        background-image: url('foto/chef-plating-premium.jpg');
+        background-position: center center;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to top,
+                rgba(10, 8, 5, 0.70) 0%,
+                rgba(10, 8, 5, 0.45) 40%,
+                rgba(10, 8, 5, 0.25) 70%,
+                rgba(10, 8, 5, 0.15) 100%);
     }
 
     .hero-content {
-        padding-top: 20vh;
-        /* Abbassa il testo per non coprire il volto se necessario */
+        color: var(--white);
         text-align: center;
         padding-left: var(--section-px);
+    }
+
+    .hero-label {
+        opacity: 0.85;
     }
 
     /* Hero: nome più piccolo */
@@ -1264,19 +1335,6 @@ a {
 
     .hero-subtitle {
         font-size: 1.1rem;
-    }
-
-    /* Mosaico su mobile: 2 colonne compatte */
-    .materia-mosaic {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 160px;
-        gap: 0.4rem;
-    }
-
-    .mosaic-item.mosaic-wide,
-    .mosaic-item.mosaic-tall {
-        grid-column: span 1;
-        grid-row: span 1;
     }
 
     /* Footer: colonna su mobile */

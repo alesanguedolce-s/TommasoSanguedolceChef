@@ -38,7 +38,7 @@
          NAVIGAZIONE ETEREA
          Menu "ghost" che appare solo con blur di sfondo
     ═══════════════════════════════════════════════════ -->
-    <header id="navbar" class="navbar" role="banner">
+    <header id="navbar" class="navbar" :class="{ 'menu-open': menuOpen }" role="banner">
         <nav class="nav-container" aria-label="Navigazione principale">
             <!-- Logo -->
             <a href="#origine" class="nav-logo" aria-label="Torna all'inizio">
@@ -57,23 +57,23 @@
             <!-- Hamburger mobile -->
             <button class="nav-hamburger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen"
                 aria-label="Apri menu di navigazione">
-                <span class="hamburger-line" :class="menuOpen && 'open-top'"></span>
-                <span class="hamburger-line" :class="menuOpen && 'open-mid'"></span>
-                <span class="hamburger-line" :class="menuOpen && 'open-bot'"></span>
+                <span class="hamburger-line" :class="{ 'open-top': menuOpen }"></span>
+                <span class="hamburger-line" :class="{ 'open-mid': menuOpen }"></span>
+                <span class="hamburger-line" :class="{ 'open-bot': menuOpen }"></span>
             </button>
         </nav>
-
-        <!-- Menu mobile overlay -->
-        <div class="mobile-menu" :class="menuOpen && 'mobile-menu--open'" x-cloak>
-            <ul class="mobile-menu-links" role="list">
-                <li><a href="#origine" class="mobile-link" @click="menuOpen = false">Home</a></li>
-                <li><a href="#visione" class="mobile-link" @click="menuOpen = false">Visione</a></li>
-                <li><a href="#servizi" class="mobile-link" @click="menuOpen = false">Servizi</a></li>
-                <li><a href="#materia" class="mobile-link" @click="menuOpen = false">Portfolio</a></li>
-                <li><a href="#dialogo" class="mobile-link" @click="menuOpen = false">Contatti</a></li>
-            </ul>
-        </div>
     </header>
+
+    <!-- Menu mobile overlay spostato fuori per evitare z-index conflicts -->
+    <div class="mobile-menu" :class="{ 'mobile-menu--open': menuOpen }" x-cloak>
+        <ul class="mobile-menu-links" role="list">
+            <li><a href="#origine" class="mobile-link" @click="menuOpen = false">Home</a></li>
+            <li><a href="#visione" class="mobile-link" @click="menuOpen = false">Visione</a></li>
+            <li><a href="#servizi" class="mobile-link" @click="menuOpen = false">Servizi</a></li>
+            <li><a href="#materia" class="mobile-link" @click="menuOpen = false">Portfolio</a></li>
+            <li><a href="#dialogo" class="mobile-link" @click="menuOpen = false">Contatti</a></li>
+        </ul>
+    </div>
 
     <main>
         <!-- ═══════════════════════════════════════════════════
