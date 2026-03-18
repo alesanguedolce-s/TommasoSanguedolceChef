@@ -139,6 +139,8 @@ a {
     z-index: 10000;
     padding: 1.5rem var(--section-px);
     transition: padding var(--duration) var(--ease-organic);
+    /* Soft protection: gradiente leggero dall'alto per agevolare il contrasto del testo scuro sulla foto */
+    background: linear-gradient(to bottom, rgba(250, 248, 244, 0.4) 0%, rgba(250, 248, 244, 0) 100%);
 }
 
 .navbar::before {
@@ -217,19 +219,33 @@ a {
 }
 
 .nav-link {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
+    font-family: var(--font-heading);
+    /* Passato al font elegante (Cormorant Garamond) */
+    font-size: 1.15rem;
+    /* Ingrandito appena ancora per facilitare l'occhio */
+    font-weight: 700;
+    /* Utilizzo del nuovo peso Bold (700) per irrobustire notevolmente il tratto */
+    letter-spacing: 0.12em;
+    /* Leggerissima riduzione dello spazio per non disperdere la frase */
     text-transform: uppercase;
-    color: var(--accent);
+    color: #6a5335;
+    /* Variante "Bronzo Scuro": stessa tonalità oro/terra di var(--accent), ma decisamente più scura ed incisiva */
     position: relative;
     padding: 0.3rem 0;
-    transition: color var(--duration-fast) var(--ease-organic);
+    text-shadow: 0 0 12px rgba(250, 248, 244, 0.9);
+    /* Aura potenziata al 90% per farlo staccare benissimo */
+    transition: color var(--duration-fast) var(--ease-organic), opacity var(--duration-fast) var(--ease-organic);
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+    /* Leggerissima opacità elegante invece di alterare colori */
 }
 
 .navbar.scrolled .nav-link {
     color: var(--text-primary);
+    text-shadow: none;
+    /* L'ombra viene tolta quando il menu ha sfondo solido */
 }
 
 /* Underline animato: dal centro verso l'esterno */
@@ -347,6 +363,7 @@ a {
 .hero {
     position: relative;
     height: 100vh;
+    height: 100svh;
     min-height: 600px;
     display: flex;
     align-items: center;

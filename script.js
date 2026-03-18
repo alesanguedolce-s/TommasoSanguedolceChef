@@ -229,12 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             serviceDrawer.classList.add('active');
             serviceDrawer.setAttribute('aria-hidden', 'false');
-            if (typeof lenis !== 'undefined') lenis.stop();
+            if (lenis) lenis.stop();
             document.body.style.overflow = 'hidden';
         } else {
             serviceDrawer.classList.remove('active');
             serviceDrawer.setAttribute('aria-hidden', 'true');
-            if (typeof lenis !== 'undefined') lenis.start();
+            if (lenis) lenis.start();
             document.body.style.overflow = '';
         }
     }
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     lightboxImg.src = imgSrc;
                     lightbox.classList.add('active');
                     lightbox.setAttribute('aria-hidden', 'false');
-                    if (typeof lenis !== 'undefined') lenis.stop(); // Ferma lo scroll della pagina
+                    if (lenis) lenis.stop(); // Ferma lo scroll della pagina
                 }
             });
         });
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!lightbox) return;
         lightbox.classList.remove('active');
         lightbox.setAttribute('aria-hidden', 'true');
-        if (typeof lenis !== 'undefined') lenis.start(); // Riattiva lo scroll
+        if (lenis) lenis.start(); // Riattiva lo scroll
         if (lightboxImg) {
             setTimeout(() => {
                 lightboxImg.src = ''; // Pulisci src dopo l'animazione
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         backToTopBtn.addEventListener('click', () => {
-            if (typeof lenis !== 'undefined') {
+            if (lenis) {
                 lenis.scrollTo(0);
             } else {
                 window.scrollTo({
