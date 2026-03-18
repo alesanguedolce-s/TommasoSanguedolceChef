@@ -190,7 +190,7 @@ a {
 
 /* Icona simbolo S/T — bianco sull'hero, colori originali dopo lo scroll */
 .nav-logo-img {
-    height: 36px;
+    height: 56px;
     width: auto;
     /* Rimosso filtro brightness(0) invert(1) per mantenere il logo originale scuro/brand */
     transition: filter var(--duration) var(--ease-organic),
@@ -383,6 +383,9 @@ a {
     /* Fa sì che il testo si appoggi sul lato sinistro */
     text-align: left;
     color: var(--accent);
+    /* Allinea il blocco di testo con il contenitore della navbar */
+    max-width: calc(1400px + 2 * var(--section-px));
+    margin: 0 auto;
     /* Spinge il testo all'interno, verso il centro ma mantendo l'allineamento a sinistra.
        Usa calc() per sommare il var(--section-px) di base con un extra padding */
     padding-left: calc(var(--section-px));
