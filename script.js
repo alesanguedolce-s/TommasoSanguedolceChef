@@ -252,6 +252,38 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('click', () => toggleServiceDrawer(false));
     });
 
+    // ───────── PRIVACY DRAWER — Pannello Privacy Policy ─────────
+    const privacyDrawer = document.getElementById('privacy-drawer');
+    const privacyOpenBtn = document.querySelector('[data-open-privacy-drawer]');
+    const privacyCloseElements = document.querySelectorAll('[data-close-privacy-drawer]');
+
+    function togglePrivacyDrawer(open) {
+        if (!privacyDrawer) return;
+
+        if (open) {
+            privacyDrawer.classList.add('active');
+            privacyDrawer.setAttribute('aria-hidden', 'false');
+            if (lenis) lenis.stop();
+            document.body.style.overflow = 'hidden';
+        } else {
+            privacyDrawer.classList.remove('active');
+            privacyDrawer.setAttribute('aria-hidden', 'true');
+            if (lenis) lenis.start();
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (privacyOpenBtn) {
+        privacyOpenBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            togglePrivacyDrawer(true);
+        });
+    }
+
+    privacyCloseElements.forEach(el => {
+        el.addEventListener('click', () => togglePrivacyDrawer(false));
+    });
+
     // ───────── LIGHTBOX GALLERY ─────────
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');

@@ -186,6 +186,16 @@ a {
     transition: opacity var(--duration-fast) var(--ease-organic);
 }
 
+.nav-logo-testo {
+    display: none;
+}
+
+/* Ritratti Mobile (da mostrare solo su smartphone) */
+.portrait-mobile-visione,
+.portrait-mobile-drawer {
+    display: none;
+}
+
 .nav-logo:hover {
     opacity: 0.7;
 }
@@ -593,7 +603,7 @@ a {
 .bio-drawer {
     position: fixed;
     inset: 0;
-    z-index: 9000;
+    z-index: 11000;
     visibility: hidden;
     transition: visibility 0.5s;
 }
@@ -1323,6 +1333,85 @@ a {
         display: flex;
     }
 
+    .nav-logo-testo {
+        display: block;
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: inherit; /* Segue il colore del link/logo active */
+        margin-left: 1rem;
+        white-space: nowrap;
+    }
+
+    /* Navbar più sottile on scroll nel mobile */
+    .navbar.scrolled {
+        padding: 0.8rem var(--section-px);
+    }
+    
+    .navbar.scrolled .nav-logo-img {
+        height: 44px; /* Ridotto da 56px */
+    }
+
+    .navbar.scrolled .nav-logo-testo {
+        font-size: 0.85rem;
+    }
+
+    /* Logo bianco quando il menu mobile scuro è aperto */
+    .navbar.menu-open .nav-logo-testo {
+        color: var(--white) !important;
+    }
+
+    /* Drawer: Titolo e X non coperti dalla barra o troppo alti */
+    .bio-content {
+        padding-top: 0; 
+    }
+    
+    .bio-close {
+        top: 1.5rem;
+        right: 1.5rem;
+        border-color: var(--text-primary);
+    }
+
+    .bio-body {
+        padding-top: 4rem; 
+    }
+
+    /* Styling Ritratti Mobile */
+    .portrait-mobile-visione {
+        display: block;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 2.5rem;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .portrait-mobile-drawer {
+        display: block;
+        width: calc(100% + 11vw); /* Estendi per coprire il padding del bio-body se serve, o tieni allineato */
+        margin: -4rem -5.5vw 2.5rem -5.5vw; /* Negativo per farlo partire dalla cima del drawer */
+        height: 350px;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .portrait-mobile-visione img,
+    .portrait-mobile-drawer img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+    }
+
+    /* Riduzione padding bio-body se c'è immagine drawer per non avere troppa aria */
+    .portrait-mobile-drawer + .bio-eyebrow {
+        margin-top: 1rem;
+    }
+
     /* Hero: foto d'azione per mobile — sfondo scuro, testo leggibile */
     .hero-parallax {
         background-image: url('foto/chef-plating-premium.jpg');
@@ -1561,19 +1650,29 @@ a {
 
 /* CREDITS */
 .footer-credits {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.25);
     font-weight: 300;
     letter-spacing: 0.05em;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+    width: 100%;
 }
 
-.footer-credits .separator {
-    color: var(--accent);
-    opacity: 0.5;
+.footer-credits .credit-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer-credits .credit-center {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-credits .credit-right {
+    flex: 1;
+    text-align: right;
 }
 
 .footer-credits a {
@@ -1610,151 +1709,106 @@ a {
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .site-footer {
-        padding: 4rem var(--section-px) 2rem;
+        /* Punto 3: rimosso padding-top e bottom eccessivi (prima era 4rem) */
+        padding: 2.5rem var(--section-px) 1.5rem; 
     }
 
     .footer-container {
-        flex-direction: column;
-        gap: 2rem;
-        text-align: center;
-    }
-
-    .footer-block.block-nav,
-    .footer-block.block-contact {
-        text-align: center;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .footer-nav-list {
-        justify-content: center;
-        flex-wrap: wrap;
+        /* Punto 4: griglia a due colonne. Logo occupa tutto, sotto nav a sx e contatti a dx */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "logo logo"
+            "nav contact";
+        gap: 1.5rem 0.5rem;
+        align-items: start;
     }
 
     .footer-block.block-brand {
-        order: -1;
+        grid-area: logo;
+        text-align: center;
+        /* Rimosso margine sotto per avvicinare le scritte al logo */
+        margin-bottom: 0.5rem; 
+        order: auto; /* Reset dell'order -1 */
     }
 
-    /* ═══════════════════════════════════════════════════
-   FOOTER UPDATE - VERTICAL & CONTACTS (User Req)
-   ═══════════════════════════════════════════════════ */
-    /* SX: Lista Verticale Compatta */
+    .footer-logo {
+        /* Punto 3: ingrandisci il logo presente */
+        height: auto !important;
+        width: 300px !important;
+        max-width: 90%;
+        margin: 0 auto;
+        opacity: 0.95 !important;
+    }
+
+    .footer-block.block-nav {
+        grid-area: nav;
+        text-align: left;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .footer-block.block-contact {
+        grid-area: contact;
+        text-align: right;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
     .footer-nav-list {
+        display: flex;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 0.5rem !important;
+        justify-content: flex-start;
+        gap: 0.8rem !important;
     }
 
+    /* Punto 1: schiarisci colori testi opacità (mobile) */
     .footer-nav-list a {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
         letter-spacing: 0.05em !important;
-        opacity: 0.7;
-    }
-
-    .footer-nav-list a:hover {
-        opacity: 1;
-        transform: translateX(3px);
-        /* Effetto hover sottile */
-        display: inline-block;
-    }
-
-    /* CENTRO: Full Logo Adjust */
-    .footer-logo {
-        height: 120px !important;
-        /* Adatta altezza per logo completo */
-        width: auto !important;
+        color: rgba(255, 255, 255, 0.9) !important;
         opacity: 1 !important;
     }
 
-    /* DX: Contatti & Icone */
-    .footer-block.block-contact {
-        flex-direction: column !important;
-        align-items: flex-end !important;
-        gap: 1.2rem !important;
-    }
-
-    .footer-contact-info {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 0.8rem;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.7);
-        font-family: var(--font-body);
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        gap: 0.8rem;
-    }
-
-    .contact-icon {
-        width: 16px;
-        height: 16px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.5;
-        opacity: 0.6;
+    .footer-contact-line {
+        color: rgba(255, 255, 255, 0.9) !important;
+        text-align: right;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        display: block;
     }
 
     .footer-social-icons {
         display: flex;
-        gap: 1.2rem;
+        flex-direction: row;
+        gap: 1rem;
         align-items: center;
+        justify-content: flex-end;
+        margin-top: 1rem;
     }
 
     .social-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgba(255, 255, 255, 0.5);
-        transition: all 0.3s ease;
+        color: rgba(255, 255, 255, 0.9) !important;
     }
 
     .social-icon svg {
         width: 20px;
         height: 20px;
-        fill: currentColor;
-    }
-
-    .social-icon:hover {
-        color: var(--accent);
-        transform: translateY(-2px);
-    }
-
-    /* FIX PER ICONE CONTATTO AGGIUNTE */
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        margin: 0;
-    }
-
-    .contact-icon {
-        width: 16px;
-        height: 16px;
         fill: none;
         stroke: currentColor;
-        stroke-width: 1.5;
-        opacity: 0.6;
+    }
+    
+    .footer-credits {
+        margin-top: 2rem;
+        color: rgba(255, 255, 255, 0.9) !important;
+        /* Giustificati sinistra, centro, destra si auto-applicano da flex */
+        font-size: 0.75rem;
     }
 
-    .footer-contact-info {
-        font-family: var(--font-body);
-        /* Assicura font corretto */
-    }
-
-    @media (max-width: 768px) {
-        .footer-nav-list {
-            align-items: center !important;
-        }
-
-        .footer-block.block-contact,
-        .footer-contact-info {
-            align-items: center !important;
-        }
+    .footer-credits a {
+        color: rgba(255, 255, 255, 0.9) !important;
+        text-decoration: underline;
     }
 }
 
