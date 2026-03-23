@@ -1334,7 +1334,7 @@ a {
     }
 
     .nav-logo-testo {
-        display: block;
+        display: none; /* Nascosto di base su mobile per evitare ridondanza in Home */
         font-family: var(--font-heading);
         font-size: 0.95rem;
         font-weight: 600;
@@ -1355,11 +1355,13 @@ a {
     }
 
     .navbar.scrolled .nav-logo-testo {
+        display: block; /* Appare solo dopo lo scroll (fuori dalla Home top) */
         font-size: 0.85rem;
     }
 
     /* Logo bianco quando il menu mobile scuro è aperto */
     .navbar.menu-open .nav-logo-testo {
+        display: block !important;
         color: var(--white) !important;
     }
 
@@ -1451,6 +1453,22 @@ a {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
+    }
+
+    /* Ottimizzazione Card Servizi per Mobile */
+    .servizio-content {
+        padding: 1.5rem;
+    }
+
+    .servizio-title {
+        font-size: 1.65rem !important;
+        margin-bottom: 0.5rem;
+    }
+
+    .servizio-desc {
+        font-size: 0.88rem;
+        padding-top: 0.8rem;
+        max-width: 100%;
     }
 }
 
@@ -1554,7 +1572,20 @@ a {
     }
 
     .servizio-card {
-        height: 340px;
+        height: 320px;
+    }
+
+    .servizio-content {
+        padding: 1.2rem;
+    }
+
+    .servizio-title {
+        font-size: 1.5rem !important;
+    }
+
+    .servizio-desc {
+        font-size: 0.82rem;
+        line-height: 1.4;
     }
 
     .slider-item {
