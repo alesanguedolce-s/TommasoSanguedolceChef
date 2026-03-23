@@ -355,4 +355,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ───────── SWIPE TO CLOSE (MOBILE) — Logica universale per i drawer ─────────
+    function initSwipeToClose(drawerEl, closeCallback) {
+        if (!drawerEl) return;
+        const content = drawerEl.querySelector('.bio-content');
+        if (!content) return;
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        const threshold = 50; // Minimo swipe per chiudere
+
+        content.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        content.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diffX = touchEndX - touchStartX;
+            const diffY = Math.abs(touchEndY - touchStartY);
+
+            // Lo swipe verso destra chiude (diffX > threshold)
+            // Solo se lo swipe è prevalentemente orizzontale (diffX > diffY)
+            if (diffX > threshold && diffX > diffY) {
+                closeCallback();
+            }
+        }
+    }
+
+    // Inizializza swipe per ogni drawer
+    initSwipeToClose(bioDrawer, () => toggleBioDrawer(false));
+    initSwipeToClose(serviceDrawer, () => toggleServiceDrawer(false));
+    initSwipeToClose(privacyDrawer, () => togglePrivacyDrawer(false));
 });

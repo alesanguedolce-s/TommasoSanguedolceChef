@@ -660,6 +660,23 @@ a {
     transform: translateX(0);
 }
 
+/* Indicatore swipe laterale (Handle) — sottile ed elegante */
+@media (max-width: 768px) {
+    .bio-content::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 40px;
+        background: var(--accent);
+        border-radius: 10px;
+        opacity: 0.3;
+        z-index: 5;
+    }
+}
+
 /* ═══════════════════════════════════════════════════
    BIO DRAWER - STILI CORRETTI PER SFONDO CHIARO
    ═══════════════════════════════════════════════════ */
@@ -670,20 +687,23 @@ a {
     right: 2rem;
     width: 44px;
     height: 44px;
-    background: transparent;
+    background: rgba(250, 248, 244, 0.4); /* Sfondo leggero per contrasto */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--text-primary);
-    /* Bordo scuro */
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    opacity: 0.7;
+    z-index: 100; /* Sopra tutto nel drawer */
+    transition: all 0.3s var(--ease-organic);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bio-close:hover {
+    background: var(--bg-primary);
     border-color: var(--accent);
     transform: rotate(90deg);
-    opacity: 1;
 }
 
 .bio-close::before,
@@ -782,6 +802,13 @@ a {
     margin-bottom: 1.2rem;
 }
 
+.visione-text p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.8rem;
+    line-height: 1.85;
+}
+
 @media (max-width: 768px) {
     .bio-body {
         padding: 5rem 2rem 2rem 2rem;
@@ -790,13 +817,18 @@ a {
     .bio-title {
         font-size: 2.5rem;
     }
-}
 
-.visione-text p {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.8rem;
-    line-height: 1.85;
+    .visione-quote {
+        margin-bottom: 1.4rem;
+        line-height: 1.45;
+        font-size: 1.25rem;
+    }
+
+    .visione-text p {
+        font-size: 1.1rem;
+        line-height: 1.65;
+        margin-bottom: 1.2rem;
+    }
 }
 
 /* Drop Cap — Capolettera elegante */
